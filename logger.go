@@ -31,7 +31,7 @@ func SetOutputFile(loggingTo string) {
 	logFile, err := os.OpenFile(loggingTo, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	logger.Out = os.Stdout
 
-	checkErr(err)
+	CheckErr(err)
 	logger.Out = logFile
 	log.SetFormatter(&log.TextFormatter{
 		FullTimestamp: true,
@@ -70,7 +70,7 @@ func SetOutputFile(loggingTo string) {
 // 	// log.Fatalf()
 // }
 
-func checkErr(err error) {
+func CheckErr(err error) {
 	if err != nil {
 		panic(err)
 	}
