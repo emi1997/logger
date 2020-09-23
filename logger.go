@@ -19,59 +19,33 @@ func Fields(name string, msg string, time time.Time) {
 	log.WithFields(standardFields)
 }
 
-// type FieldHook struct {
-// 	Name string
-// 	Msg  string
-// 	Time time.Time
-// }
+var logging = log.New()
 
-var logger = log.New()
+var (
+	InfoLogger  *log.Logger
+	ErrorLogger *log.Logger
+)
 
-func SetOutputFile(loggingTo string) {
+func SetOutputFile(loggingTo string) string {
 	logFile, err := os.OpenFile(loggingTo, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
-	logger.Out = os.Stdout
+	logging.Out = os.Stdout
 
 	CheckErr(err)
-	logger.Out = logFile
+	logging.Out = logFile
 	log.SetFormatter(&log.TextFormatter{
 		FullTimestamp: true,
 	})
+	return logFile.Name()
 }
 
-// func NewFieldHook(name string, msg string, env string) *FieldHook {
-// 	return &FieldHook{
-// 		Name: name,
-// 		Msg:  msg,
-// 		Time: time.Time{},
-// 	}
-// }
-
-// func (h *FieldHook)Levels() []logrus.Level{
-// 	return logrus.AllLevels
-
-// }
-
-// func (h *FieldHook) Fire(entry *logrus.Entry)error {
-// 	h.Msg = "Logged successfully!"
-
-// 	entry.Data["Name"] = h.Name
-// 	entry.Data["Msg"] = h.Msg
-// 	entry.Data["Time"] = h.Time
-// 	return nil
-// }
-
-// func main() {
-
-// 	log.AddHook(NewFieldHook(Name, msg, config.Env))
-// }
-
-// func ErrorLog(loggingTo string) {
-// 	SetOutputFile(loggingTo)
-// 	// log.Fatalf()
-// }
+func ErrorLog(err error) {
+	if err != nil {
+		log.Error(err)
+	}
+}
 
 func CheckErr(err error) {
 	if err != nil {
-		panic(err)
+
 	}
 }
