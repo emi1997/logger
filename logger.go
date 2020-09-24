@@ -48,7 +48,12 @@ var logging = log.New()
 // 	return &standardFields
 // }
 
-func SetOutputFile(loggingTo string)string {
+
+
+//Stand: 23.09.2020
+
+//SetOutputFile ...
+func SetOutputFile(loggingTo string){
 	logFile, err := os.OpenFile(loggingTo, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	logging.Out = os.Stdout
 
@@ -57,7 +62,6 @@ func SetOutputFile(loggingTo string)string {
 	log.SetFormatter(&log.TextFormatter{
 		FullTimestamp: true,
 	})
-	return logFile.Name()
 }
 
 // // InfoLog makes new Info-Level Input in logfile
@@ -73,6 +77,22 @@ func SetOutputFile(loggingTo string)string {
 // 	}
 // }
 
+// Formatter ...
+func Formatter(timestamp string, a bool, colours bool) string{
+	formatter := new(log.TextFormatter)
+	formatter.TimestampFormat = timestamp
+	formatter.FullTimestamp = a
+	formatter.ForceColors = colours
+
+	log.SetFormatter(formatter)
+	return formatter.TimestampFormat
+}
+
+func LevelInfo(msg string, name string, time string){
+	log.Info("Job: " + name, "Msg: " + msg , "Time: " + time)
+}
+
+// CheckErr ...
 func CheckErr(err error) {
 	if err != nil {
 		panic(err)
