@@ -86,7 +86,7 @@ func Formatter(a bool, colours bool) string{
 }
 
 func LevelInfo(msg string, name string, time string){
-	log.Info("Job: " + name, "Msg: " + msg , "Time: " + time)
+	log.Info("Job: " + name, " Msg: " + msg , " Time: " + time)
 }
 
 // CheckErr ...
