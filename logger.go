@@ -75,9 +75,9 @@ func SetOutputFile(loggingTo string){
 // }
 
 // Formatter ...
-func Formatter(timestamp string, a bool, colours bool) string{
+func Formatter(a bool, colours bool) string{
 	formatter := new(log.TextFormatter)
-	formatter.TimestampFormat = timestamp
+	formatter.TimestampFormat = time.Now().String()
 	formatter.FullTimestamp = a
 	formatter.ForceColors = colours
 
