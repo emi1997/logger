@@ -3,7 +3,7 @@ package logger
 import (
 	// "fmt"
 	"os"
-	// "time"
+	"time"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -86,7 +86,7 @@ func Formatter(a bool, colours bool) string{
 }
 
 func LevelInfo(msg string, name string, time string){
-	log.Info("Job: " + name, " Msg: " + msg , " Time: " + time)
+	log.Info("Job: " + name, "; Msg: " + msg , "; Time: " + time)
 }
 
 // CheckErr ...
