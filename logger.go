@@ -59,9 +59,6 @@ func SetOutputFile(loggingTo string){
 
 	CheckErr(err)
 	logging.Out = logFile
-	log.SetFormatter(&log.TextFormatter{
-		FullTimestamp: true,
-	})
 }
 
 // // InfoLog makes new Info-Level Input in logfile
