@@ -84,7 +84,7 @@ func Formatter(a bool, colours bool){
 	log.SetFormatter(formatter)
 }
 
-func LevelInfo(msg string, name string, time string) {
+func LevelInfo(msg string, name string) {
 	log.Info("Job: "+name, "; Msg: "+msg)
 }
 
