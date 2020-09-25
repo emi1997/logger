@@ -72,10 +72,12 @@ func SetOutputFile(loggingTo string) {
 // 	}
 // }
 
+// Stand 24.09.2020
+
 // Formatter ...
-func Formatter(timestamp string, a bool, colours bool) string {
+func Formatter(timelayout string, a bool, colours bool) string {
 	formatter := new(log.TextFormatter)
-	formatter.TimestampFormat = time.Now().Format(timestamp)
+	formatter.TimestampFormat = time.Now().Format(timelayout)
 	formatter.FullTimestamp = a
 	formatter.ForceColors = colours
 
@@ -84,7 +86,7 @@ func Formatter(timestamp string, a bool, colours bool) string {
 }
 
 func LevelInfo(msg string, name string, time string) {
-	log.Info("Job: "+name, "; Msg: "+msg, "; Time: "+time)
+	log.Info("Job: "+name, "; Msg: "+msg)
 }
 
 // CheckErr ...
